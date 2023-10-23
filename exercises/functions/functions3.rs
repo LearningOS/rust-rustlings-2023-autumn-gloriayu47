@@ -3,10 +3,9 @@
 // Execute `rustlings hint functions3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 fn main() {
-    call_me();
+    call_me(6);// 解法：缺少传入参数
 }
 
 fn call_me(num: u32) {
