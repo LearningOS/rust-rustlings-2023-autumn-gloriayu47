@@ -7,15 +7,16 @@
 // Execute `rustlings hint errors3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
 
 use std::num::ParseIntError;
 
-fn main() {
+fn main() -> Result<(),ParseIntError> {
     let mut tokens = 100;
     let pretend_user_input = "8";
 
-    let cost = total_cost(pretend_user_input)?;
+    // 解法：total_cost可能会抛出错误，然后会传播给main方法，所以加上Result<(),ParseIntError>
+    // The unit (`()`) type is there because nothing is really needed in terms of positive results.
+    let cost = total_cost(pretend_user_input)?;// 有错时抛出
 
     if cost > tokens {
         println!("You can't afford that many!");
@@ -23,6 +24,7 @@ fn main() {
         tokens -= cost;
         println!("You now have {} tokens.", tokens);
     }
+    Ok(())// 无错时返回
 }
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
